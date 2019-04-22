@@ -32,7 +32,7 @@ html,body{
 	top: 0;
 }
 
-.page1 h1{
+.page1 .tlt{
 	position: absolute;
 	z-index: 9;
 	color: #fff;
@@ -41,6 +41,18 @@ html,body{
 	font-size: 50px;
 	top: 10%;
 	letter-spacing: 10px;
+	opacity: 1;
+	animation:dong1 2s ease 0s;
+}
+@-webkit-keyframes dong1{
+	from{
+		letter-spacing: 100px;
+		opacity: 0;
+	}
+	to{
+		letter-spacing: 10px;
+		opacity: 1;
+	}
 }
 .box .bg .page2{
 	transform: rotatey(90deg);
@@ -51,8 +63,113 @@ html,body{
 .box .bg .page4{
 	transform: rotatey(270deg);
 }
-/*.box .bg .page5{
-	transform: rotatey(160deg);
-}*/
-
+.page1 .xix{
+	width: 100%;
+	height: 100px;
+	position: absolute;
+	top: 30%;
+}
+.page1 .xix .tou{
+	width: 100px;
+	height: 100px;
+	opacity: 0;
+	border: 2px solid #fff;
+	border-radius: 50%;
+	margin: 0 auto;
+	overflow: hidden;
+	position: relative;
+	animation:dong4 2s ease 3s forwards;
+}
+@-webkit-keyframes dong4{
+	from{
+		opacity: 0;
+	}
+	to{
+		opacity: 1;
+	}
+}
+.page1 .xix:before{
+	content: "";
+	width: 800px;
+	height: 5px;
+	background: #ffffff;
+	position: absolute;
+	left: 0;
+	opacity: 0;
+	margin-left: -870px;
+	top: 50px;
+	z-index: 99;
+	animation:dong2 2s ease 2s forwards;
+}
+@-webkit-keyframes dong2{
+	from{
+		left: 0;
+		opacity: 0
+	}
+	to{
+		left: 50%;
+		opacity: 1
+	}
+}
+.page1 .xix:after{
+	content: "";
+	width: 800px;
+	height: 5px;
+	background: #ffffff;
+	position: absolute;
+	right: 0;
+	opacity: 0;
+	margin-right: -870px;
+	top: 50px;
+	z-index: 99;
+	animation:dong3 2s ease 2s forwards;
+}
+@-webkit-keyframes dong3{
+	from{
+		right: 0;
+		opacity: 0
+	}
+	to{
+		right: 50%;
+		opacity: 1
+	}
+}
+.page1 .xix .tou img{
+	width: 100%;
+	height: 100%;
+}
+.page1 .jie{
+	width: 300px;
+	height: 0px;
+	overflow: hidden;
+	position: absolute;
+	color: #fff;
+	font-size: 20px;
+	text-align: center;
+	left: 50%;
+	line-height: 40px;
+	margin-left: -150px;
+	top: 45%;
+	animation:dong5 2s ease 2s forwards;
+}
+@-webkit-keyframes dong5{
+	from{
+		height: 0;
+		opacity: 0;
+	}
+	to{
+		height: 300px;
+		opacity: 1;
+	}
+}
+.nav{
+	width: 800px;
+	height: 800px;
+	border: 2px solid #fff;
+	border-radius: 50%;
+	position: fixed;
+	bottom: -800px;
+	left: 50%;
+	margin-left: -400px;
+}
 
