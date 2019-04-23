@@ -13,23 +13,18 @@ html,body{
 	width: 100%;
 	height: 100%;
 	position: relative;
-	-webkit-transform-style: preserve-3d;
-	-moz-transform-style: preserve-3d;
-	-ms-transform-style: preserve-3d;
-	transform-style: preserve-3d;
-	-webkit-transition: all 2s;
-	-o-transition: all 2s;
-	transition: all 2s;
-	transform-origin:0 0;
-	
 }
 .box .bg .page{
 	width: 100%;
 	height: 100%;
 	transform-origin:0 0;
+	-webkit-transition: all 2s;
+	-o-transition: all 2s;
+	transition: all 2s;
 	position: absolute;
 	left: 0;
 	top: 0;
+	/*transform: rotatex(-45deg);*/
 }
 
 .page1 .tlt{
@@ -53,15 +48,6 @@ html,body{
 		letter-spacing: 10px;
 		opacity: 1;
 	}
-}
-.box .bg .page2{
-	transform: rotatey(90deg);
-}
-.box .bg .page3{
-	transform: rotatey(180deg);
-}
-.box .bg .page4{
-	transform: rotatey(270deg);
 }
 .page1 .xix{
 	width: 100%;
@@ -150,7 +136,7 @@ html,body{
 	line-height: 40px;
 	margin-left: -150px;
 	top: 45%;
-	animation:dong5 2s ease 2s forwards;
+	animation:dong5 2s ease 3s forwards;
 }
 @-webkit-keyframes dong5{
 	from{
@@ -162,14 +148,82 @@ html,body{
 		opacity: 1;
 	}
 }
-.nav{
-	width: 800px;
-	height: 800px;
-	border: 2px solid #fff;
-	border-radius: 50%;
-	position: fixed;
-	bottom: -800px;
+.box .off{
+	color: #fff;
+	position: absolute;
+	font-size: 30px;
 	left: 50%;
-	margin-left: -400px;
+	bottom: 100px;
+	margin-left: -60px;
+	cursor: pointer;
 }
+.box .off:hover{
+	text-decoration: underline;
+	color: skyblue;
+}
+.box .off::after{
+	content: "";
+	position: absolute;
+	display: block;
+	width: 50px;
+	height: 30px;
+	background: url(../images/clickMe_8a1da4a.png) no-repeat;
+	transform: rotatey(180deg);
+	left: -60px;
+	top: 10px;
+	animation:dong8 0.5s ease 0s infinite alternate;
+}
+.box .off::before{
+	content: "";
+	position: absolute;
+	display: block;
+	width: 50px;
+	height: 30px;
+	background: url(../images/clickMe_8a1da4a.png) no-repeat;
+	right: -60px;
+	top: 10px;
+	animation:dong9 0.5s ease 0s infinite alternate;
+}
+@-webkit-keyframes dong8{
+	from{
+		left: -60px
+	}
+	to{
+		left: -90px;
+	}
+}
+@-webkit-keyframes dong9{
+	from{
+		right: -60px;
+	}
+	to{
+		right: -90px;
+	}
+}
+.bottom{
+	width: 43px;
+	height: 39px;
+	background: url(../images/spr-btns.png) no-repeat -393px -117px;
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	margin-left: -21.5px;
+	animation:dong10 0.5s ease 0s infinite alternate;
+}
+@-webkit-keyframes dong10{
+	from{
+		bottom: 10px;
+	}
+	to{
+		bottom: 40px;
+	}
+}
+.asd{
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 120px;
+	margin-left: -60px;
+}
+
 
