@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>普通轮播图</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.main{
+			width: 400px;
+			height: 307px;
+			border: 5px solid #e1e1e1;
+			margin: 100px auto;
+			position: relative;
+		}
+		.box{
+			width: 400px;
+			height: 307px;
+			position: relative;
+			overflow: hidden;
+		}
+		.box .bg{
+			width: 2400px;
+			height: 307px;
+			list-style: none;
+			position: absolute;
+			left: 0;
+			transition: all 1s;
+		}
+		.bg li{
+			float: left;
+		}
+		.main span{
+			width: 52px;
+			height: 52px;
+			display: inline-block;
+			position: absolute;
+			background: url(images/72/arr.png) no-repeat;
+			top: 50%;
+			margin-top: -26px;
+		}
+		.main .left{
+			left: -20px;
+			
+		}
+		.main .right{
+			background-position: -52px 0;
+			right: -20px;
+		}
+		.but{
+			width: 400px;
+			height: 13px;
+			list-style: none;
+			text-align: center;
+		}
+		.but li{
+			width: 13px;
+			height: 13px;
+			display: inline-block;
+			background: url(images/72/00.png) no-repeat;
+			margin:10px 10px;
+		}
+		.but .active{
+			background-position: 0 -26px;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var num = 0;
+			function banner(){
+				$('.but li').eq(num).addClass('active').siblings().removeClass('active');
+				$('.bg').css({left:- num * $('.box').width()})
+			}
+			function next(){
+				num++;
+				if (num > $('.but li').length-1) {
+					num = 0;
+				};
+				banner()
+			}
+			$('.right').click(next)
+			$('.left').click(function(){
+				num--;
+				if (num < 0) {
+					num = $('.but li').length-1;
+				};
+				banner()
+			})
+			$('.but li').click(function(){
+				num = $(this).index();
+				banner()
+			})
+			var time = setInterval(next,1500);
+			// 划上清除定时器 划出启动
+			$('.main').hover(
+				function(){
+					clearInterval(time);
+				},
+				function(){
+					time = setInterval(next,1500);
+				}
+			);
+		})
+	</script>
+</head>
+<body>
+	<div class="main">
+		<div class="box">
+			<ul class="bg">
+				<li>
+					<img src="images/72/01.jpg" alt="">
+				</li>
+				<li>
+					<img src="images/72/02.jpg" alt="">
+				</li>
+				<li>
+					<img src="images/72/03.jpg" alt="">
+				</li>
+				<li>
+					<img src="images/72/04.jpg" alt="">
+				</li>
+				<li>
+					<img src="images/72/05.jpg" alt="">
+				</li>
+				<li>
+					<img src="images/72/06.jpg" alt="">
+				</li>
+			</ul>
+		</div>
+		<span class="left"></span>
+		<span class="right"></span>
+		<ul class="but">
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>	
+</body>
+</html>
