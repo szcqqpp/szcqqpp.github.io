@@ -11,5 +11,14 @@ $(function(){
 		$(".nav").css({bottom:"-200px",transitionDelay:"1s"}).removeClass("active");
 		$(".nav li").css({transitionDelay:"0s"});
 		$("#of").css({transform:"rotate(45deg)",transitionDelay:"0s"});
+		$(".content").hide(200);
+		$(".nav li.item").find(".con").css("border","10px solid #fff");
+	})
+	$(".nav li.item").click(function(){
+		$(this).find(".con").css("border","10px solid red")
+		$(this).siblings().find(".con").css("border","10px solid #fff");
+		var index = $(this).index(".item");
+		console.log(index);
+		$(".content").eq(index).show(500).siblings().hide(500)
 	})
 })

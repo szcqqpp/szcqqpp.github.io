@@ -1,7 +1,7 @@
 html,body{
 	width: 100%;
 	height: 100%;
-	background: #333333;
+	background: #666666;
 	font-family: "KaiTi";
 }
 .box{
@@ -230,7 +230,7 @@ html,body{
 }
 .nav{
 	width: 100%;
-	height: 200px;
+	height: 170px;
 	position: fixed;
 	bottom: -200px;
 	-webkit-transition: all 1s ease 2s;
@@ -259,13 +259,7 @@ html,body{
 	transition: all 1s ease 3s;
 }
 .nav li:nth-child(3){
-	width: 100px;
-	height: 100px;
-	line-height: 100px;
-	margin-left: -50px;
-	margin-top: -75px;
-	font-size: 70px;
-	background: gray;
+	
 	z-index: 10;
 	transform: rotate(45deg);
 	-webkit-transition: all 0.5s ease 3s;
@@ -287,9 +281,13 @@ html,body{
 .nav .con{
 	width: 130px;
 	height: 130px;
-	margin: 10px auto;
+	border:10px solid #ffffff;
+	margin: 0px auto;
 	border-radius: 50%;
 	overflow: hidden;
+	-webkit-transition: all 0.5s ease 0s;
+	-o-transition: all 0.5s ease 0s;
+	transition: all 0.5s ease 0s;
 }
 .nav .con img{
 	width: 100%;
@@ -309,7 +307,7 @@ html,body{
 	transition: all 0.5s ease 0s;
 }
 .nav li:nth-child(2)::before{
-	content: "能力展示";
+	content: "学识分享";
 	width: 100%;
 	height: 100%;
 	position: absolute;
@@ -322,7 +320,7 @@ html,body{
 	transition: all 0.5s ease 0s;
 }
 .nav li:nth-child(4)::before{
-	content: "个人项目";
+	content: "学习推荐";
 	width: 100%;
 	height: 100%;
 	position: absolute;
@@ -347,18 +345,24 @@ html,body{
 	-o-transition: all 0.5s ease 0s;
 	transition: all 0.5s ease 0s;
 }
+.nav #of .con{
+	font-size: 70px;
+	line-height: 130px;
+	text-align: center;
+	background: #666666; 
+}
 .nav li:hover::before{
 	top:0;
 }
 .content{
 	width: 1500px;
 	height: 700px;
-	background: #ffffff;
+	background: orange;
 	display: none;
 	position: fixed;
 	border-radius: 20px;
 	left: 0;
-	top: 0;
+	top: 10px;
 	left: 50%;
 	margin-left: -750px;
 }
@@ -366,7 +370,7 @@ html,body{
 	content: "";
 	display: block;
 	border: 30px solid transparent;
-	border-top: 30px solid #ffffff;
+	border-top: 30px solid orange;
 	position: absolute;
 	bottom: -50px;
 }
@@ -377,10 +381,151 @@ html,body{
 	left: 420px;
 }
 .content:nth-child(3)::after{
-	right: 120px;
-}
-.content:nth-child(4)::after{
 	right: 420px;
 }
+.content:nth-child(4)::after{
+	right: 120px;
+}
+.content h1{
+	text-align: center;
+	line-height: 50px;
+	font-size: 30px;
+}
+.content .main{
+	margin: 0 20px;
+	height: 620px;
+	background: #ffffff;
+	overflow: scroll;
+}
+.content .main::-webkit-scrollbar{
+	width: 0;
+	height: 0;
+}
+.main1 h2{
+	margin: 20px 0 0 25px;
+	line-height: 25px;
+	font-size: 20px;
+	color: orange;
+}
+.main1 h2 img{
+	width: 25px;
+	height: 25px;
+}
+.main1 ul{
+	margin: 10px;
+}
+.main1 ul li{
+	width: 278px;
+	height: 380px;
+	float: left;
+	margin: 5px;
+	background: #fff;
+	text-align: center;
+	line-height: 16px;
+	font-size: 20px;
+}
+.main1 ul li div{
+	margin: 10px;
+	height: 340px;
+	overflow: hidden;
+	background: #ffffff;
+}
+.main1 ul li div img{
+	width: 100%;
+	height: 100%;
+	-webkit-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+}
+.main1 ul li div:hover img{
+	transform: scale(1.1);
+}
+.main1 ul li p{
+	line-height: 
+}
+.main1 ul li p:hover{
+	color: red;
+	text-decoration: underline;
+}
+.main3 .wang{
+	margin: 10px 20px 20px;
+}
+.main3 .wang li{
+	width: 340px;
+	height: 300px;
+	border: 2px solid #666666;
+	float: left;
+	text-align: center;
+	margin: 5px;
+	font-size: 18px;
+	background: yellow;
+}
+.main3 .wang li div{
+	width: 300px;
+	height: 200px;
+	overflow: hidden;
+	background: #fff;
+	border: 1px solid black;
+	margin: 20px auto 0;
+	text-align: center;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.main3 .wang li div img{
+	-webkit-transition: all 0.5;
+	-o-transition: all 0.5;
+	transition: all 0.5;
+}
+.main3 .wang li div:hover img{
+	transform: scale(1.1);
+}
+.main3 .wang li h3{
+	margin-top: 10px;
+}
+.main3 .wang li a:hover{
+	color: red;
+}
+.main3 .wang li p{
+	margin: 0 20px;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+.main3 .wang li a:hover p{
+	text-decoration: underline;
+}
+.main3 .wang li .tu{
+	display: block;
+    width: 370px;
+    height: 90px;
+    background: transparent url(../images/bg.png) 0 -150px no-repeat;
+}
+.main3 h2{
+	text-align: center;
+	font-size: 25px;
+	line-height: 50px;
+	color: orange;
+}
+.main3 .text{
+	font-size: 20px;
+	line-height: 50px;
+	margin: 10px 20px;
+	overflow: hidden;
+}
+.main3 .text li{
+	float: left;
+	width: 600px;
+	margin: 0 50px;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+.main3 .text li a:hover{
+	color: red;
+	text-decoration: underline;
+}
+
+
 
 
