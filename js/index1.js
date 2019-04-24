@@ -1,9 +1,9 @@
 $(function(){
 	$(".asd").click(function(){
 		$(".box .page1").css({"transform":"rotatex(-30deg)",transitionDelay:"0s"});
-		$(".nav").css({bottom:0,transitionDelay:"2s"}).addClass("active");
-		$(".nav li").css({transitionDelay:"3s"});
-		$("#of").css({transform:"rotate(0deg)",transitionDelay:"3s"});
+		$(".nav").css({bottom:0,transitionDelay:"1.5s"}).addClass("active");
+		$(".nav li").css({transitionDelay:"2.5s"});
+		$("#of").css({transform:"rotate(0deg)",transitionDelay:"2.5s"});
 	})
 	$("#of").click(function(){
 		console.log(1)
