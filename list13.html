@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#controllBox{
+			width: 450px;
+			height: 20px;
+			margin: 20px auto;
+		}
+		#controllBox a{
+			float: left;
+			border: 1px solid gray;
+			border-radius: 3px;
+			text-align: center;
+			line-height: 30px;
+			margin-left: 5px;
+			height: 30px;
+		}
+		#controllBox a.kuanBtn{
+			width: 50px;
+		}
+		#controllBox a.numBtn{
+			width: 30px;
+		}
+		#controllBox a.ellipsis{
+			width: 30px;
+			line-height: 25px;
+		}
+		#controllBox a.selelcted{
+			background: orange;
+		}
+		#photoBox{
+			width: 100%;
+			height: 100%;
+			list-style: none;
+		}
+		#photoBox li{
+			width: 450px;
+			height: 700px;
+			border: 3px solid #fff;
+			float: left;
+		}
+		#photoBox li img{
+			width: 100%;
+			height: 100%;
+		}
+		.clear{
+			clear: both;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			function PageCtrFn(program){
+				this.box = $("#"+program.ele);
+				// 总页数
+				this.maxPage = 30;
+				// 当前页
+				this.currentPage = 1;
+				this.ControllPageFn(this.currentPage);
+			}
+			// 修改页码
+			PageCtrFn.prototype.ControllPageFn = function(num){
+				if (num<=this.maxPage&&num>=1) {
+					this.currentPage = num;
+				} else{
+					return;
+				}
+				// 准备创建分页按钮
+				// 清空
+				this.box.empty();
+				// 如果总页数<=7时 
+				if (this.maxPage <= 7) {
+					// 页码不为1执行后面 创建a标签class为kuanBtn内容为上一页添加到this.box
+					this.currentPage != 1 && $('<a></a>').addClass('kuanBtn prev').html("上一页").appendTo(this.box);
+					// for循环创建页码按钮
+					for (var i = 0; i < this.maxPage; i++) {
+						// 创建a标签class为numBtn内容为页码添加到this.box
+						$('<a></a>').addClass('numBtn').html(i+1).appendTo(this.box);
+					};
+					// 页码不为最大页码执行后面 创建a标签class为kuanBtn内容为下一页添加到this.box
+					this.currentPage != this.maxPage && $('<a></a>').addClass('kuanBtn next').html("下一页").appendTo(this.box);
+					// 找到this.box下的.numBtn对应的下表添加选中样式
+					this.box.find(".numBtn").eq(this.currentPage - 1).addClass('selelcted');
+					// 如果当前页码>5时
+				} else if (this.currentPage < 5) {
+					// 页码不为1执行后面 创建a标签class为kuanBtn内容为上一页添加到this.box
+					this.currentPage != 1 && $('<a></a>').addClass('kuanBtn prev').html("上一页").appendTo(this.box);
+					for (var i = 1; i < 7; i++) {
+						// 创建a标签class为numBtn内容为页码添加到this.box
+						$('<a></a>').addClass('numBtn').html(i).appendTo(this.box);
+					};
+
+					// 创建a标签class为numBtn内容为‘...’添加到this.box
+					$('<a></a>').addClass('ellipsis').html('...').appendTo(this.box);
+					// 创建a标签class为numBtn内容为最大页码添加到this.box
+					$('<a></a>').addClass('numBtn').html(this.maxPage).appendTo(this.box);
+					// 页码不为最大页码执行后面 创建a标签class为kuanBtn内容为下一页添加到this.box
+					this.currentPage != this.maxPage && $('<a></a>').addClass('kuanBtn next').html("下一页").appendTo(this.box);
+					// 找到this.box下的.numBtn对应的下表添加选中样式
+					this.box.find(".numBtn").eq(this.currentPage - 1).addClass('selelcted');
+				} else if (this.currentPage <=this.maxPage - 4) {
+					$('<a></a>').addClass('kuanBtn prev').html("上一页").appendTo(this.box);
+					$('<a></a>').addClass('numBtn').html("1").appendTo(this.box);
+					$('<a></a>').addClass('ellipsis').html("...").appendTo(this.box);
+					$('<a></a>').addClass('numBtn').html(this.currentPage-2).appendTo(this.box);
+					$('<a></a>').addClass('numBtn').html(this.currentPage-1).appendTo(this.box);
+					$('<a></a>').addClass('numBtn selelcted').html(this.currentPage).appendTo(this.box);
+					$('<a></a>').addClass('numBtn').html(this.currentPage+1).appendTo(this.box);
+					$('<a></a>').addClass('numBtn').html(this.currentPage+2).appendTo(this.box);
+					$('<a></a>').addClass('ellipsis').html("...").appendTo(this.box);
+					$('<a></a>').addClass('numBtn').html(this.maxPage).appendTo(this.box)
+					this.currentPage != this.maxPage && $('<a></a>').addClass('kuanBtn next').html("下一页").appendTo(this.box);
+				} else{
+					$('<a></a>').addClass('kuanBtn prev').html("上一页").appendTo(this.box);
+					$('<a></a>').addClass('numBtn').html("1").appendTo(this.box);
+					$('<a></a>').addClass('ellipsis').html("...").appendTo(this.box);
+					for (var i = this.maxPage - 4; i < this.maxPage; i++) {
+						$('<a></a>').addClass('numBtn').html(i).appendTo(this.box);
+					};
+					$('<a></a>').addClass('numBtn').html(this.maxPage).appendTo(this.box)
+					this.currentPage != this.maxPage && $('<a></a>').addClass('kuanBtn next').html("下一页").appendTo(this.box); 
+					// 找到 this.box下的
+					this.box.find(".numBtn").eq(this.currentPage - this.maxPage-1).addClass('selelcted');
+				}
+				this.bindEvent()
+				this.getDataFn(num-1)
+			}
+
+			PageCtrFn.prototype.bindEvent = function(){
+				var self = this;
+				$(".numBtn").click(function(){
+					var num = parseInt($(this).html());
+					self.ControllPageFn(num);
+				})
+				$(".prev").click(function(){
+					var num = self.currentPage-1;
+					self.ControllPageFn(num);
+				})
+				$(".next").click(function(){
+					var num = self.currentPage+1;
+					self.ControllPageFn(num);
+				})
+			}
+			// 根据页码请求数据函数
+			PageCtrFn.prototype.getDataFn = function(page){
+				$.get('https://www.apiopen.top/meituApi?page='+page,function(data){
+					var dataArray = data.data
+					var domStr = "";
+					for (var i = 0; i < dataArray.length; i++) {
+						domStr+="<li><img src="+dataArray[i].url+"></li>"
+					};
+					$("#photoBox").html(domStr)
+				})
+			}
+			new PageCtrFn({
+				"ele":"controllBox"
+			})
+		})
+	</script>
+</head>
+<body>
+	<div id="box">
+		<ul id="photoBox">
+			
+		</ul>
+	</div>
+	<div class="clear"></div>
+	<div id="controllBox">
+		
+	</div>
+</body>
+</html>

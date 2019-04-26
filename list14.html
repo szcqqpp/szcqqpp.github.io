@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#box{
+			width: 300px;
+			height: 40px;
+			border-radius: 5px;
+			background: #e1e1e1;
+			border:1px solid black;
+			margin: 300px auto;
+			position: relative;
+		}
+		#box p{
+			width: 100%;
+			height: 100%;
+			letter-spacing: 10px;
+			text-align: center;
+			line-height: 40px;
+			font-weight: bold;
+			position: absolute;
+			z-index: 2
+		}
+		#box #but{
+			width: 40px;
+			height: 40px;
+			background: #ffffff;
+			position: absolute;
+			top: 0;
+			left: 0;
+			border-radius: 5px;
+			text-align: center;
+			line-height: 40px;
+			font-size: 20px;
+			cursor: pointer;
+			z-index: 3;
+		}
+		#box #bg{
+			width: 0px;
+			height: 40px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			background: green;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<p id="zi">滑动解锁</p>
+		<div id="bg"></div>
+		<div id="but">></div>
+	</div>
+	<script type="text/javascript">
+		function prevent(evt){
+			var event = evt || window.event;
+			if(event.preventDefault){//标准浏览器
+				event.preventDefault();
+			}else if(event.returnValue){//IE低版本
+				event.returnValue = false;
+			}else{//以上浏览器皆不是
+				return false;
+			}
+		}
+
+		function $(id){
+			return document.getElementById(id);
+		}
+		var box = $('box');
+		var zi = $('zi');
+		var bg = $('bg');
+		var but = $('but');
+		but.onmousedown = function(evt){
+			but.style.transition = "all 0s";
+			bg.style.transition = "all 0s";
+			var even = evt || window.event;
+			var disx=even.offsetX;
+			var movex;
+			box.onmousemove = function(evt){
+				prevent(evt)
+				var even = evt || window.event;
+				movex = event.pageX - box.offsetLeft - disx;
+				console.log(movex);
+				movex = movex <= 0 ? 0 : movex;
+	    		movex=movex>=box.clientWidth-but.offsetWidth?box.clientWidth-but.offsetWidth:movex;
+	    		but.style.left = movex+'px';
+	    		bg.style.width = (movex+2)+'px'; 
+	    		if (movex == box.clientWidth-but.offsetWidth) {
+	    			zi.innerHTML = "解锁成功";
+	    			zi.style.color = "#ffffff";
+	    			but.innerHTML = "v";
+	    			but.style.background = "blue";
+	    			but.style.color = "#fff";
+	    			box.onmousemove = null;
+	    			but.onmousedown = null;
+	    		};
+			}
+			document.onmouseup=function(){
+				if (movex != box.clientWidth-but.offsetWidth) {
+					movex = 0;
+					but.style.transition = "all 0.5s";
+					bg.style.transition = "all 0.5s";
+				};
+				but.style.left = movex+'px';
+				bg.style.width = (movex+2)+'px'; 
+	            box.onmousemove=null;
+	        }
+			
+		}
+	</script>
+</body>
+</html>

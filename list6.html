@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box{
+			width: 1800px;
+			height: 800px;
+			background: black;
+			border: 1px solid black;
+			margin: 50px auto;
+			position: relative;
+			perspective:2000px;
+		}
+		.bg{
+			width: 1000px;
+			height: 400px;
+			/*-webkit-transform-style: preserve-3d;
+			-moz-transform-style: preserve-3d;
+			-ms-transform-style: preserve-3d;
+			transform-style: preserve-3d;*/
+			position: relative;
+			margin: 100px auto 0;
+			/*transform:rotatex(60deg);*/
+		}
+		ul{
+			list-style: none;
+		}
+		.bg ul li{
+			width: 1000px;
+			height: 400px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			-webkit-transition: all 1s;
+			-o-transition: all 1s;
+			transition: all 1s;
+		}
+		.bg ul li img{
+			width: 100%;
+			height: 100%;
+		}
+		.but{
+			width: 1050px;
+			height: 30px;
+			margin: 100px auto 0;
+		}
+		.but li{
+			width: 200px;
+			height: 30px;
+			background: #999999;
+			margin: 0 5px;
+			float: left;
+			border-radius: 10px;
+		}
+		.but .active{
+			background: yellow;
+		}
+		.box .ko{
+			width: 40px;
+			height: 70px;
+			background: url(images/images/arr.png) no-repeat;
+			position: absolute;
+			cursor: pointer;
+		}
+		.box .left{
+			left: 0;
+			top:30%;
+		}
+		.box .right{
+			right: 0;
+			top:30%;
+			background-position: -40px 0;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			// var num = 2;
+			// show(num);
+			// $(".bg ul li").click(function(){
+			// 	num = $(this).index();
+			// 	show(num);
+			// });
+			// $(".left").click(function(){
+			// 	num--;
+			// 	if (num < 0) {
+			// 		num = $(".bg ul li").length-1
+			// 	};
+			// 	show(num);
+			// })
+			// $(".right").click(function(){
+			// 	num++;
+			// 	if (num > $(".bg ul li").length-1) {
+			// 		num = 0;
+			// 	};
+			// 	show(num);
+			// })
+			// $(".but li").click(function(){
+			// 	num = $(this).index();
+			// 	show(num);
+			// });
+			// function show(){
+			// 	$(".but li").eq(num).addClass("active").siblings().removeClass("active");
+			// 	$(".bg ul li").eq(num).css({"transform":"rotatey(0) translatez(0)"})
+			// 	.prevAll().each(function(i){
+			// 		$(this).css({"transform":"rotatey(75deg) translatez("+-(i*100+500)+"px)"})
+			// 	})
+			// 	$(".bg ul li").eq(num).nextAll().each(function(i){
+			// 		$(this).css({"transform":"rotatey(-75deg) translatez("+-(i*100+500)+"px)"})
+			// 	})
+			// }
+			var styledata = [
+				{
+					rotatey:35,
+					translatex:-400,
+					translatez:-400,
+					zindex:555
+				},
+				{
+					rotatey:35,
+					translatex:-300,
+					translatez:-300,
+					zindex:666
+				},
+				{
+					rotatey:35,
+					translatex:-200,
+					translatez:-200,
+					zindex:777
+				},
+				{
+					rotatey:35,
+					translatex:-100,
+					translatez:-100,
+					zindex:888
+				},
+				{
+					rotatey:0,
+					translatex:0,
+					translatez:0,
+					zindex:999
+				},
+				{
+					rotatey:-35,
+					translatex:100,
+					translatez:-100,
+					zindex:888
+				},
+				{
+					rotatey:-35,
+					translatex:200,
+					translatez:-200,
+					zindex:777
+				},
+				{
+					rotatey:-35,
+					translatex:300,
+					translatez:-300,
+					zindex:666
+				},
+				{
+					rotatey:-35,
+					translatex:400,
+					translatez:-400,
+					zindex:555
+				}
+			]
+			var current = 2;
+			show()
+			var off = true;
+			$(".left").click(function(){
+				if (!off) {
+					return;
+				};
+				current++;
+				if (current>4) {
+					current = 0;
+				};
+				show()
+			})
+			$(".right").click(function(){
+				if (!off) {
+					return;
+				};
+				current--;
+				if (current<0) {
+					current = 4;
+				};
+				show()
+			})
+			setInterval(function(){
+				current--;
+				if (current<0) {
+					current = 4;
+				};
+				show();
+			},1000)
+			function show(){
+				off = false;
+				var read = styledata.slice(current,current+5);
+				$(".bg ul li").each(function(i){
+					$(this).css({
+						"transform":"rotatey("+read[i].rotatey+"deg) translatez("+read[i].translatez+"px) translatez("+read[i].translatez+"px)",
+						"zIndex":read[i].zindex
+					})
+				})
+				setTimeout(function(){
+					off = true;
+				},500)
+			}
+		})
+	</script>
+</head>
+<body>
+	<div class="box">
+		<div class="bg">
+			<ul>
+				<li><img src="images/images/1.jpg" alt=""></li>
+				<li><img src="images/images/2.jpg" alt=""></li>
+				<li><img src="images/images/3.jpg" alt=""></li>
+				<li><img src="images/images/4.jpg" alt=""></li>
+				<li><img src="images/images/5.jpg" alt=""></li>
+			</ul>
+		</div>
+		<ul class="but">
+			<li></li>
+			<li></li>
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<div class="ko left"></div>
+		<div class="ko right"></div>
+	</div>
+</body>
+</html>

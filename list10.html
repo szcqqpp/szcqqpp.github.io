@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box{
+			width: 800px;
+			height: 600px;
+			margin: 60px auto;
+			display: flex;
+			box-shadow: 0px 0px 10px black;
+			position: relative;
+		}
+		.head{
+			width: 300px;
+			height: 300px;
+			border: 2px solid #4e7985;
+			border-radius: 50%;
+			margin: 10px auto 0;
+			background: #08bee9;
+			position: relative;
+			box-shadow: -2px 5px 5px gray;
+		}
+		.face{
+			width: 250px;
+			height: 200px;
+			border: 2px solid black;
+			border-radius: 50%;
+			position: absolute;
+			background: #fff;
+			bottom: 10px;
+			left: 50%;
+			margin-left: -127px;
+		}
+		.eyes{
+			width: 61px;
+			height: 80px;
+			border: 2px solid black;
+			border-radius: 30px;
+			position: absolute;
+			background: #fff;
+			top:-40px;
+		}
+		.lefteyes{
+			left: 60px;
+		}
+		.righteyes{
+			right: 60px;
+		}
+		.eyes::before{
+			content: "";
+			width: 14px;
+			height: 14px;
+			background: black;
+			border-radius: 50%;
+			position: absolute;
+			bottom: 15px;
+		}
+		.lefteyes::before{
+			right: 15px;
+		}
+		.righteyes::before{
+			left: 15px;
+		}
+		.nose{
+			width: 30px;
+			height: 30px;
+			border: 2px solid black;
+			border-radius:50%;
+			position: absolute;
+			background: #d14000;
+			left: 50%;
+			margin-left: -17px;
+			top:30px;
+		}
+		.line{
+			width: 3px;
+			height: 100px;
+			background: black;
+			position: absolute;
+			left: 50%;
+			margin-left: -1.5px;
+			top:64px;
+		}
+		.mouth{
+			width: 200px;
+			height: 200px;
+			border: 2px solid black;
+			border-top: 2px solid transparent;
+			border-left: 2px solid transparent;
+			border-right: 2px solid transparent;
+			border-radius: 50%;
+			position: absolute;
+			left: 50%;
+			margin-left: -102px;
+			top:-40px;
+		}
+		.beard{
+			width: 60px;
+			height: 2px;
+			background: black;
+			position: absolute;
+			left: 50%;
+		}
+		.beard1{
+			margin-left: -100px;
+			top: 70px;
+			transform:rotate(20deg);
+		}
+		.beard2{
+			margin-left: -100px;
+			top: 90px;
+		}
+		.beard3{
+			margin-left: -100px;
+			top: 110px;
+			transform:rotate(-20deg);
+		}
+		.beard4{
+			margin-left: 40px;
+			top: 70px;
+			transform:rotate(-20deg);
+		}
+		.beard5{
+			margin-left: 40px;
+			top: 90px;
+		}
+		.beard6{
+			margin-left: 40px;
+			top: 110px;
+			transform:rotate(20deg);
+		}
+		.neck{
+			width: 214px;
+			height: 20px;
+			background: #ca4106;
+			border-radius: 30px;
+			border: 2px solid black;
+			position: absolute;
+			left: 50%;
+			margin-left: -109px;
+			top: 274px;
+			z-index: 2;
+		}
+		.bell{
+			width: 30px;
+			height: 30px;
+			background: #fffb20;
+			border: 2px solid black;
+			overflow: hidden;
+			position: absolute;
+			border-radius: 50%;
+			top: 5px;
+			left: 50%;
+			margin-left: -17px;
+		}
+		.gong{
+			border: 2px solid black;
+			width: 30px;
+			height: 2px;
+			position: absolute;
+			top: 8px;
+			left: 50%;
+			margin-left: -18px;
+
+		}
+		.kong{
+			width: 10px;
+			height: 10px;
+			background: black;
+			position: absolute;
+			border-radius: 50%;
+			left: 50%;
+			margin-left: -5px;
+			top: 16px;
+		}
+		.kou{
+			width: 4px;
+			height: 5px;
+			background: black;
+			position: absolute;
+			left: 50%;
+			margin-left: -2px;
+			bottom: 0;
+		}
+		.body{
+			width: 200px;
+			height:180px;
+			border: 2px solid #4e7985;
+			border-top: none;
+			background: #00bfea;
+			position: absolute;
+			left: 50%;
+			margin-left: -102px;
+			top: 298px;
+		}
+		.hand{
+			width: 80px;
+			height: 40px;
+			border: 2px solid #4e7985;
+			background: #00bfea;
+			position: absolute;
+			z-index: -1;
+			transform:rotate(20deg);
+		}
+		.lefthand{
+			left: -68px;
+			top:18px;
+			transform:rotate(-30deg);
+		}
+		.lefthand::after{
+			content: "";
+			display: block;
+			width: 50px;
+			height: 50px;
+			background: #fff;
+			border-radius: 50%;
+			border: 2px solid black;
+			position: absolute;
+			left: -15px;
+			top: -5px;
+		}
+		.righthand{
+			right: -68px;
+			top:18px;
+			transform:rotate(30deg);
+		}
+		.righthand::after{
+			content: "";
+			display: block;
+			width: 50px;
+			height: 50px;
+			background: #fff;
+			border-radius: 50%;
+			border: 2px solid black;
+			position: absolute;
+			right: -15px;
+			bottom: -5px;
+		}
+		.chest{
+			width: 204px;
+			height: 40px;
+			background: #00bfea;
+			position: absolute;
+			left: -2px;
+		}
+		.belly{
+			width: 150px;
+			height: 150px;
+			border: 2px solid black;
+			background: #fff;
+			border-radius: 50%;
+			position: absolute;
+			left: 50%;
+			margin-left: -77px;
+			top:-23px;
+			z-index: 1;
+		}
+		.pocket{
+			width: 120px;
+			height: 60px;
+			border: 2px solid black;
+			border-radius: 0 0 60px 60px;
+			position: absolute;
+			left: 50%;
+			margin-left: -62px;
+			top: 70px;
+		}
+		.leg{
+			width: 30px;
+			height: 15px;
+			border: 2px solid #4e7985;
+			background: #fff;
+			position: absolute;
+			border-bottom: none;
+			border-radius: 20px 20px 0 0;
+			left:50%;
+			margin-left: -17px;
+			bottom: -2px;
+		}
+		.leftfoot{
+			width: 105px;
+			height: 20px;
+			border: 2px solid black;
+			position: absolute;
+			background: #fff;
+			bottom: -24px;
+			left: -14px;
+			border-radius: 30px 20px 20px 10px;
+		}
+		.rightfoot{
+			width: 105px;
+			height: 20px;
+			border: 2px solid black;
+			position: absolute;
+			background: #fff;
+			bottom: -24px;
+			right: -14px;
+			border-radius: 20px 30px 10px 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="head">
+			<div class="face">
+				<div class="eyes lefteyes"></div>
+				<div class="eyes righteyes"></div>
+				<div class="nose"></div>
+				<div class="line"></div>
+				<div class="mouth"></div>
+				<div class="beard beard1"></div>
+				<div class="beard beard2"></div>
+				<div class="beard beard3"></div>
+				<div class="beard beard4"></div>
+				<div class="beard beard5"></div>
+				<div class="beard beard6"></div>
+			</div>
+		</div>
+		<div class="neck">
+			<div class="bell">
+				<div class="gong"></div>
+				<div class="kong"></div>
+				<div class="kou"></div>
+			</div>
+		</div>
+		<div class="body">
+			<div class="hand lefthand"></div>
+			<div class="hand righthand"></div>
+			<div class="chest"></div>
+			<div class="belly">
+				<div class="pocket"></div>
+			</div>
+			<div class="leg"></div>
+			<div class="leftfoot"></div>
+			<div class="rightfoot"></div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+			width: 1500px;
+			height: 100px;
+			border: 2px solid black;
+			margin: 20px auto;
+			background: yellow;
+			text-align: center;
+			line-height: 100px;
+			font-weight: bolder;
+			font-size: 50px;
+		}
+		.box{
+			width: 1550px;
+			height: 150px;
+			position: relative;
+		}
+		.box span{
+			display:block;
+			width: 1496px;
+			height: 96px;
+			border: 2px solid black;
+			position: absolute;
+			opacity: 0.8;
+			top:25px;
+			margin-left: 25px;
+			background: red;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			var top = $('span').offset().top;
+			$(window).scroll(function(){
+				var scrolltop = $(window).scrollTop()
+				if (scrolltop >= top) {
+					$('span').css({position:'fixed',top:0})
+				}else{
+					$('span').css({position:'absolute',top:25})
+				}
+			})
+		});
+	</script>
+</head>
+<body>
+	<div>1</div>
+	<div>2</div>
+	<div>3</div>
+	<div>4</div>
+	<div>5</div>
+	<div>6</div>
+	<div class="box">
+		<span>7</span>
+	</div>
+	<div>8</div>
+	<div>9</div>
+	<div>10</div>
+	<div>11</div>
+	<div>12</div>
+	<div>13</div>
+	<div>14</div>
+	<div>15</div>
+	<div>16</div>
+	<div>17</div>
+	<div>18</div>
+	<div>19</div>
+	<div>20</div>
+	<div>21</div>
+	<div>22</div>
+	<div>23</div>
+	<div>24</div>
+	<div>25</div>
+</body>
+</html>

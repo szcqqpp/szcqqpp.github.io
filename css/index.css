@@ -564,7 +564,7 @@ html,body{
 .main2 ul li{
 	width: 340px;
 	height: 200px;
-	background: -webkit-linear-gradient(top,red,black,yellow);
+	background: -webkit-linear-gradient(top,red,#fff,yellow);
 	text-align: center;
 	float: left;
 	margin: 10px;
@@ -574,6 +574,7 @@ html,body{
 }
 .main2 ul li a{
 	display: inline-block;
+	color: blue;
 	width: 100%;
 	height: 100%;
 }

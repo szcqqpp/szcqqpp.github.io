@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+			width: 570px;
+			height: 50px;
+			margin: 50px auto;
+			line-height: 50px;
+		}
+		input{
+			width: 400px;
+			height: 50px;
+			padding-left: 10px;
+			font-size: 30px;
+			display: inline-block;
+			color: #666666;
+		}
+		button{
+			width: 100px;
+			height: 52px;
+			font-size: 30px;
+			display: inline-block;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$('input[type="text"]').focusin(function(){
+				if ($(this).val() == '请输入内容') {
+					$(this).val('');
+					$('input[type="text"]').css('color','black');
+				}else{
+					$(this).select();
+				}	
+			})
+			$('input[type="text"]').focusout(function(){
+				var num = $.trim($(this).val())
+				if (num == '') {
+					$(this).val('请输入内容');
+					$('input[type="text"]').css('color','gray');
+				};
+			})
+		});
+	</script>
+</head>
+<body>
+	<div>
+		<input type="text" value="请输入内容"><button>搜索</button>
+	</div>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box{
+			width: 1000px;
+			height: 400px;
+			border: 1px solid black;
+			margin: 100px auto;
+			position: relative;
+		}
+		.box ul{
+			list-style: none;
+		}
+		.box ul li{
+			width: 200px;
+			height: 400px;
+			/*perspective:1000px;*/
+			float: left;
+			
+		}
+		.box ul li .bg{
+			width: 200px;
+			height: 400px;
+			position: relative;
+			-webkit-transform-style: preserve-3d;
+			-moz-transform-style: preserve-3d;
+			-ms-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+		}
+		.box ul li .bg p{
+			width: 200px;
+			height: 400px;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		.box ul li .bg p:nth-child(1){
+			background: url(images/images/1.jpg) no-repeat;
+			background-size: 1000px 400px;
+			transform:rotatex(0deg) translatez(200px);
+		}
+		.box ul li .bg p:nth-child(2){
+			background: url(images/images/2.jpg) no-repeat;
+			background-size: 1000px 400px;
+			transform:rotatex(90deg) translatez(200px);
+		}
+		.box ul li .bg p:nth-child(3){
+			background: url(images/images/3.jpg) no-repeat;
+			background-size: 1000px 400px;
+			transform:rotatex(180deg) translatez(200px);
+		}
+		.box ul li .bg p:nth-child(4){
+			background: url(images/images/4.jpg) no-repeat;
+			background-size: 1000px 400px;
+			transform:rotatex(-90deg) translatez(200px);
+		}
+		.box ul li:nth-child(1) .bg{
+			transition: all 1s ease 0s; 
+		}
+		.box ul li:nth-child(2) .bg{
+			transition: all 1s ease 0.3s; 
+		}
+		.box ul li:nth-child(3) .bg{
+			transition: all 1s ease 0.6s; 
+		}
+		.box ul li:nth-child(4) .bg{
+			transition: all 1s ease 0.9s;
+		}
+		.box ul li:nth-child(5) .bg{
+			transition: all 1s ease 1.2s;
+		}
+		.box ul li:nth-child(2) .bg p{
+			background-position:-200px 0; 
+		}
+		.box ul li:nth-child(3) .bg p{
+			background-position:-400px 0; 
+		}
+		.box ul li:nth-child(4) .bg p{
+			background-position:-600px 0;
+		}
+		.box ul li:nth-child(5) .bg p{
+			background-position:-800px 0;
+		}
+		.box .but{
+			width: 40px;
+			height: 70px;
+			background: url(images/images/arr.png) no-repeat;
+			position: absolute;
+			cursor: pointer;
+		}
+		.box .left{
+			left: 0;
+			top:50%;
+			margin-top: -35px;	
+		}
+		.box .right{
+			right: 0;
+			top:50%;
+			margin-top: -35px;
+			background-position: -40px 0;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var num = 0;
+			var off = true;
+			$(".left").click(function(){
+				if (!off){return};
+				num += 90;
+				$(".bg").css({transform:"rotatex("+num+"deg)"});
+				off = false;
+				setTimeout(function(){
+					off = true;
+				},2000)
+			})
+			$(".right").click(function(){
+				if (!off){return};
+				num -= 90;
+				$(".bg").css({transform:"rotatex("+num+"deg)"});
+				off = false;
+				setTimeout(function(){
+					off = true;
+				},2000)
+			})
+			var timer = setInterval(function(){
+				num -= 90;
+				$(".bg").css({transform:"rotatex("+num+"deg)"});
+			},2150)
+			$(".box").hover(
+				function(){
+					clearInterval(timer)
+				},
+				function(){
+					timer = setInterval(function(){
+						num -= 90;
+						$(".bg").css({transform:"rotatex("+num+"deg)"});
+					},2150)
+				}	
+			)
+			$(document).mousedown(function(evt){
+				var event = evt || window.event;
+				var startx = event.clientX;
+				var starty = event.clientY;
+				console.log(startx);
+				$(document).mousemove(function(evt){
+					var event = evt || window.event;
+					event.preventDefault();
+					console.log(event);
+					var endx = event.clientX - startx;
+					var endy = event.clientY - starty;
+					$(".bg").css({"transform":"rotatex("+endy/5+"deg)"});
+					return false;
+				})
+			})
+			$(document).mouseup(function(){
+				$(document).off("mousemove");
+			})
+		})
+	</script>
+</head>
+<body>
+	<div class="box">
+		<ul>
+			<li>
+				<div class="bg">
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+				</div>
+			</li>
+			<li>
+				<div class="bg">
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+				</div>
+			</li>
+			<li>
+				<div class="bg">
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+				</div>
+			</li>
+			<li>
+				<div class="bg">
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+				</div>
+			</li>
+			<li>
+				<div class="bg">
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+				</div>
+			</li>
+		</ul>
+		<div class=" but left"></div>
+		<div class=" but right"></div>
+	</div>
+</body>
+</html>

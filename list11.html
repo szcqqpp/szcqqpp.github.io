@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.subBox{
+			float: left;
+			padding: 5px;
+			border:1px solid lightgray;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div class="subBox"><img src="images/image/P_000.jpg" alt=""></div>
+		<div class="subBox"><img src="images/image/P_001.jpg" alt=""></div>
+		<div class="subBox"><img src="images/image/P_002.jpg" alt=""></div>
+		<div class="subBox"><img src="images/image/P_003.jpg" alt=""></div>
+		<div class="subBox"><img src="images/image/P_004.jpg" alt=""></div>
+		<div class="subBox"><img src="images/image/P_005.jpg" alt=""></div>
+		<div class="subBox"><img src="images/image/P_006.jpg" alt=""></div>
+		<div class="subBox"><img src="images/image/P_007.jpg" alt=""></div>
+		<div class="subBox"><img src="images/image/P_008.jpg" alt=""></div>
+		<div class="subBox"><img src="images/image/P_009.jpg" alt=""></div>
+		<div class="subBox"><img src="images/image/P_010.jpg" alt=""></div>
+		<div class="subBox"><img src="images/image/P_011.jpg" alt=""></div>
+		<div class="subBox"><img src="images/image/P_012.jpg" alt=""></div>
+		<div class="subBox"><img src="images/image/P_013.jpg" alt=""></div>
+		<div class="subBox"><img src="images/image/P_014.jpg" alt=""></div>
+		<div class="subBox"><img src="images/image/P_015.jpg" alt=""></div>
+		<div class="subBox"><img src="images/image/P_016.jpg" alt=""></div>
+		<div class="subBox"><img src="images/image/P_017.jpg" alt=""></div>
+		<div class="subBox"><img src="images/image/P_018.jpg" alt=""></div>
+		<div class="subBox"><img src="images/image/P_019.jpg" alt=""></div>
+	</div>
+	<script type="text/javascript">
+	 	window.onload =function(){
+			var subBox = document.getElementById('box').children;
+			// 获取浏览器宽度
+			var pagewidth = window.innerWidth;
+			var boxwidth = subBox[0].offsetWidth;
+			var maxnum = Math.floor(pagewidth/boxwidth);
+			var heightArray = [];
+			for (var i = 0; i < subBox.length; i++) {
+				if (i < maxnum) {
+					heightArray[i] = subBox[i].offsetHeight;
+				} else{
+					var minheight = getMinValue(heightArray).value;
+					var minheightIndex = getMinValue(heightArray).index;
+					subBox[i].style.position = "absolute";
+					subBox[i].style.left = subBox[minheightIndex].offsetLeft+"px";
+					subBox[i].style.top = minheight+"px";
+					heightArray[minheightIndex] = minheight + subBox[i].offsetHeight;
+				}
+			};
+			console.log(heightArray)
+			function getMinValue (array) {
+				var obj = {};
+				obj.index = 0;
+				obj.value = array[obj.index];
+				for (var i = 0; i < array.length; i++) {
+					if (array[i]<obj.value) {
+						obj.value = array[i];
+						obj.index = i;
+					};
+				};
+				return obj;
+			}
+	 	}
+	</script>
+</body>
+</html>

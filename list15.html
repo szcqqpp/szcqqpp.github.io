@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.gao{
+			width: 200px;
+			height: 400px;
+			border: 2px solid black;
+			background: yellow;
+			position: absolute;
+			top:250px;
+		}
+		.left{
+			left: 0;
+		}
+		.right{
+			right: 0;
+		}
+		.box{
+			width: 998px;
+			height: 6708px;
+			border: 1px solid black;
+			margin: 0 auto;
+		}
+		span{
+			display: inline-block;
+			position: absolute;
+			width: 20px;
+			height: 20px;
+			top:5px;
+			right: 5px;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<script>
+		$(function(){
+			var asd =($(window).height()-$('.gao').height())/2
+			$('.gao').css('top','50px').animate({top:asd},1000)
+			$(window).scroll(function(){
+				var zxc = $(window).scrollTop()
+				var c = asd + zxc
+				$('.gao').stop(true).animate({top:c},1000)
+			})
+		})
+	</script>
+</head>
+<body>
+	<div class="gao left">
+		<span>❌</span>
+	</div>
+	<div class="gao right">
+		<span>❌</span>
+	</div>
+	<div class="box">
+		<img src="images/content.png" alt="">
+		<img src="images/content.png" alt="">
+		<img src="images/content.png" alt="">
+		<img src="images/content.png" alt="">
+	</div>
+</body>
+</html>

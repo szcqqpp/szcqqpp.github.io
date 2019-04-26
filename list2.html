@@ -1,0 +1,171 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无缝轮播</title>
+<style type="text/css">
+*{ padding:0; margin:0; list-style:none; border:0;}
+.all{
+  width:500px;
+  height:200px;
+  padding:7px;
+  border:1px solid #ccc;
+  margin:100px auto;
+  position:relative;
+}
+.screen{
+width:500px;
+height:200px;
+overflow:hidden; 
+position:relative;
+}
+.screen li{ width:500px; height:200px; overflow:hidden; float:left;}
+.screen ul{ position:absolute; left:0; top:0px; width:3000px;}
+.all ol{ position:absolute; right:10px; bottom:10px; line-height:20px; text-align:center;}
+.all ol li{ float:left; width:20px; height:20px; background:#fff; border:1px solid #ccc; margin-left:10px; cursor:pointer;}
+.all ol li.current{ background:yellow;}
+
+/*#arr {display: none;}*/
+#arr span{ width:40px; height:40px; position:absolute; left:5px; top:50%; margin-top:-20px; background:#000; cursor:pointer; line-height:40px; text-align:center; font-weight:bold; font-family:'黑体'; font-size:30px; color:#fff; opacity:0.3; border:1px solid #fff;}
+#arr #right{right:5px; left:auto;}
+
+</style>
+</head>
+
+<body>
+<div class="all" id='all'>
+    <div class="screen" id="screen">
+        <ul id="ul">
+            <li><img src="images/img/1.jpg" width="500" height="200" /></li>
+            <li><img src="images/img/2.jpg" width="500" height="200" /></li>
+            <li><img src="images/img/3.jpg" width="500" height="200" /></li>
+            <li><img src="images/img/4.jpg" width="500" height="200" /></li>
+            <li><img src="images/img/5.jpg" width="500" height="200" /></li>
+        </ul>
+        <ol></ol>
+        <div id="arr">
+            <span id="left"><</span>
+            <span id="right">></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    //需求：无缝轮播图
+    //步骤：
+    //1.老三步。获取相关元素。
+    //2.复制第1张图片放第5张后面
+        //2.1. 动态生成ol中的li-5个数字。
+        //2.2.激活ol中第1个数字颜色。
+    //3.鼠标放到小方块儿上，轮播图片。
+    //4.添加定时器。
+    //5.左右切换的按钮。
+
+    //1.老三步。获取相关元素。
+    var box = document.getElementById("all");
+    var ul = box.children[0].children[0];
+    var ol = box.children[0].children[1];
+    var ulLiArr = ul.children;
+    var now = 0; //当前now值
+    var key = 0; //另一个索引值
+
+    //2.复制第1张图片放第5张后面。
+    var newLi = ulLiArr[0].cloneNode(true);
+    ul.appendChild(newLi);
+        //2.1 动态生成ol中的li-5个数字。
+    for(var i=0;i<ulLiArr.length-1;i++){
+        var newOlLi = document.createElement("li");
+        newOlLi.innerHTML = i+1;
+        ol.appendChild(newOlLi);
+    }
+        //2.2.激活ol中第1个数字颜色。
+    var olLiArr = ol.children;
+    ol.children[0].className = "current";
+
+    //3.鼠标放到小方块儿上，轮播图片。
+    for(var i=0;i<olLiArr.length;i++){
+        olLiArr[i].index = i;
+        olLiArr[i].onmouseover = function () {
+            now =key= this.index; //在这里now与key下标一样
+            tab();
+            animate(ul,-this.index*ul.children[0].offsetWidth);
+        }
+    }
+    //公用选项卡
+    function tab(){
+        for(var j=0;j<olLiArr.length;j++){
+                    olLiArr[j].className = "";
+        }
+        olLiArr[now].className = "current";
+    }
+    //4.添加定时器。
+    var timer = null;
+    timer = setInterval(autoPlay,2000);
+
+    function autoPlay(){
+        key++;
+        now++;
+        if(key>olLiArr.length){
+            key=1; //因为尾部多一张是第一张,所以跳到第二张
+            ul.style.left = 0;
+        }
+        animate(ul,-key*ul.children[0].offsetWidth);
+
+        now = now>olLiArr.length-1?0:now;
+        tab();
+    }
+    //5.鼠标移开开启定时器，鼠标放上去开启定时器。
+    box.onmouseover = function () {
+        clearInterval(timer);
+    }
+    box.onmouseout = function () {
+        timer = setInterval(autoPlay,2000);
+    }
+    //6.左右切换的按钮。
+    var btnArr = box.children[0].children[2].children;
+    //上一个按钮
+    btnArr[0].onclick = function () {
+        key--;
+        now--;
+        if(key<0){
+            key=4;
+            ul.style.left = -5*ul.children[0].offsetWidth + "px";
+        }
+        animate(ul,-key*ul.children[0].offsetWidth);
+
+        now = now<0?olLiArr.length-1:now;
+        tab();
+    }
+    //下一个按钮
+    btnArr[1].onclick = function () {
+        autoPlay();
+    }
+
+//运动封装
+    var time2=null;
+    function animate(obj, target)
+     {
+
+        var start=obj.offsetLeft;
+        var dis=target-start; //从相应整数倍位置运动到当前位置的距离
+         // console.log(start,dis,target); 
+         //第一次值: 0,-255,-255  第二次:  -255,-255,-510
+
+        //希望能够动态的发生变化，而不是直接的位置跳转,因此设置步数，即每一张图切换需要多少步
+        //变量n用于计算当前步数，变量count用于控制总步数
+        var n=0;
+        var count=20;
+        clearInterval(time2);
+         time2=setInterval(function (){
+            n++;
+            //每一步需要走多远 dis*n/count
+            obj.style.left=start+dis*n/count+'px';
+
+            if(n==count)
+            {
+                clearInterval(time2);
+            }
+        }, 30);
+     }
+</script>
