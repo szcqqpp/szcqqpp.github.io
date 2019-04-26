@@ -1,8 +1,10 @@
 $(function(){
 	douwn()
-	window.onresize = function(){
+	$(window).resize(function(){
+		console.log(1)
+		$("#container").find('canvas').remove();
 		douwn();
-	}
+	})
 	function douwn(){
 		var container = document.getElementById("container");
 		var width = container.clientWidth;
